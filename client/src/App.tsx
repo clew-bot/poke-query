@@ -11,8 +11,9 @@ const capitalize = (str: string) => {
 };
 
 function App() {
-  const { data, isLoading, isError, error, isSuccess, individualPokemon } = useGetAllPokemon();
-  console.log(individualPokemon)
+  const { data, isLoading, isError, error, isSuccess, individualPokemon } =
+    useGetAllPokemon();
+  console.log(individualPokemon);
   const [scope, animate] = useAnimate();
   const staggerNames = stagger(0.1);
 
@@ -36,7 +37,7 @@ function App() {
     console.log(error);
     return <div>Error!!!!!</div>;
   }
-  if (!data) return <div>No data</div>;
+  if (!individualPokemon) return <div>No data</div>;
 
   return (
     <>
@@ -47,22 +48,14 @@ function App() {
         ref={scope}
         className="flex flex-wrap justify-left items-center gap-2"
       >
-        {individualPokemon?.map((pokemon) => (
-          <PokeCard key={pokemon.data?.name} pokemon={pokemon} />
-       
-        ))}
-        {/* {isSuccess &&
-          data?.results.map((pokemon) => (
-            <PokeCard key={pokemon.name} pokemon={pokemon}>
-            <Link
-              to={`/pokemon/${pokemon.name}`}
-              className="poke font-light text-lg"
-              key={pokemon.name}
-            >
-              {capitalize(pokemon.name)}
-            </Link>
-            </PokeCard>
-          ))} */}
+        {individualPokemon &&
+          individualPokemon.map((pokemon) =>
+            pokemon.data ? (
+              <div key={pokemon.data.id}>
+                <PokeCard pokemon={pokemon.data} />
+              </div>
+            ) : null
+          )}
       </div>
     </>
   );
