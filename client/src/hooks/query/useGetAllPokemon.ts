@@ -13,13 +13,35 @@ interface PokemonResponse {
     results: Pokemon[];
 }
 
+interface SinglePokemonResponse {
+    abilities: any[];
+    base_experience: number;
+    forms: any[];
+    game_indices: any[];
+    height: number;
+    held_items: any[];
+    id: number;
+    is_default: boolean;
+    location_area_encounters: string;
+    moves: any[];
+    name: string;
+    order: number;
+    past_types: any[];
+    species: any[];
+    sprites: any[];
+    stats: any[];
+    types: any[];
+    weight: number;
+}
+
+
 const getAllPokemon = async (): Promise<PokemonResponse> => {
     const { data } = await axios.get<PokemonResponse>("https://pokeapi.co/api/v2/pokemon?limit=20");
     return data;
 }
 
-const getSinglePokemon = async (url: string): Promise<Pokemon> => {
-    const { data } = await axios.get<Pokemon>(url);
+const getSinglePokemon = async (url: string): Promise<SinglePokemonResponse> => {
+    const { data } = await axios.get<SinglePokemonResponse>(url);
     return data;
 }
 
@@ -32,17 +54,6 @@ export const useGetAllPokemon = () => {
             queryFn: () => getSinglePokemon(pokemon.url)
         })) || []
     })
-
-
-
-    // const pokemonQueries = useQueries({
-    //     queries: [
-    //         {
-    //             queryKey: ["getSinglePokemon", data?.results[0].url],
-    //             queryFn: () => getSinglePokemon(data.results[0].url)
-    //         }
-    //     ]
-    // });
 
     return { isLoading, isError, data, error, isSuccess, individualPokemon };
 }

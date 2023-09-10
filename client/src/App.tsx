@@ -11,24 +11,25 @@ const capitalize = (str: string) => {
 };
 
 function App() {
-  const { data, isLoading, isError, error, isSuccess } = useGetAllPokemon();
+  const { data, isLoading, isError, error, isSuccess, individualPokemon } = useGetAllPokemon();
+  console.log(individualPokemon)
   const [scope, animate] = useAnimate();
   const staggerNames = stagger(0.1);
 
-  useEffect(() => {
-    if (!isSuccess) return;
+  // useEffect(() => {
+  //   if (!isSuccess) return;
 
-    void animate(
-      ".poke",
-      {
-        opacity: [0, 1],
-        y: [-100, 0],
-      },
-      {
-        delay: staggerNames,
-      }
-    );
-  }, [animate, isSuccess]);
+  //   void animate(
+  //     ".poke",
+  //     {
+  //       opacity: [0, 1],
+  //       y: [-100, 0],
+  //     },
+  //     {
+  //       delay: staggerNames,
+  //     }
+  //   );
+  // }, [animate, isSuccess]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) {
@@ -46,7 +47,11 @@ function App() {
         ref={scope}
         className="flex flex-wrap justify-left items-center gap-2"
       >
-        {isSuccess &&
+        {individualPokemon?.map((pokemon) => (
+          <PokeCard key={pokemon.data?.name} pokemon={pokemon} />
+       
+        ))}
+        {/* {isSuccess &&
           data?.results.map((pokemon) => (
             <PokeCard key={pokemon.name} pokemon={pokemon}>
             <Link
@@ -57,7 +62,7 @@ function App() {
               {capitalize(pokemon.name)}
             </Link>
             </PokeCard>
-          ))}
+          ))} */}
       </div>
     </>
   );
