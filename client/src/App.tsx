@@ -1,23 +1,32 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGetAllPokemon } from "./hooks/query/useGetAllPokemon";
 import PokeCard from "./components/PokeCard";
 import Container from "./components/Container";
 import PaginatedBar from "./components/PaginatedBar";
+import { useSearchParams } from "react-router-dom";
 
 // Moved outside of the component to avoid re-definition
 
 function App() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
   const { individualPokemon } = useGetAllPokemon(page);
 
+  //Grab the page from the URL
+  useEffect(() => {
+    const page = searchParams.get("page");
+    setPage(Number(page) || 1);
+  }, [searchParams]);
+
   const isLoading = individualPokemon?.some((pokemon) => pokemon.isLoading);
   const isFetching = individualPokemon?.some((pokemon) => pokemon.isFetching);
-  console.log(individualPokemon);
+  // console.log(individualPokemon);
 
   if (!individualPokemon) return <div>No data</div>;
 
   const handlePaginate = (page: number): number => {
+    setSearchParams({ page: page.toString() });
     setPage(page);
     return page;
   };

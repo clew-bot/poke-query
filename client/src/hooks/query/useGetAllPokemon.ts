@@ -2,9 +2,9 @@ import { useQuery, useQueries } from "@tanstack/react-query";
 import { SinglePokemonDTO } from "../../types/SinglePokemonResponse";
 import axios from "axios";
 import { PokemonResponse } from "../../types/GeneralResponse";
+import { useSearchParams } from "react-router-dom";
 
-
-
+// const [searchParams, setSearchParams] = useSearchParams();
 
 const getAllPokemon = async (offset: any): Promise<PokemonResponse> => {
   const { data } = await axios.get<PokemonResponse>(
@@ -20,10 +20,7 @@ const getSinglePokemon = async (url: string) => {
 
 export const useGetAllPokemon = (page: number) => {
   const offset = (page - 1) * 20;
-  const { data } = useQuery<
-    PokemonResponse,
-    Error
-  >({
+  const { data } = useQuery<PokemonResponse, Error>({
     queryKey: ["getAllPokemon", { offset }],
     queryFn: () => getAllPokemon(offset),
     keepPreviousData: true,
@@ -36,7 +33,7 @@ export const useGetAllPokemon = (page: number) => {
       })) || [],
   });
 
-  console.log(individualPokemon);
+  // console.log(individualPokemon);
 
   return {
     individualPokemon,
