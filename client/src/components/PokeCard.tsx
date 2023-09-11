@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SinglePokemonDTO } from "../types/SinglePokemonResponse";
 import { motion, AnimatePresence } from "framer-motion";
 interface PokeCardProps {
@@ -10,27 +11,28 @@ const capitalize = (str: string) => {
 const PokeCard = ({ pokemon }: PokeCardProps) => {
   if (!pokemon.name) return null;
   return (
-    <div className="border-2 p-2 rounded border-black bg-slate-100 hover:bg-slate-200 transition duration-300 ease-in-out">
+   <Link to={`/pokemon/${pokemon.name}`}>
+    <div className="border-2 p-2 rounded border-black bg-slate-100 hover:bg-slate-200 transition duration-300 ease-in-out flex flex-col justify-center items-center cursor-pointer">
       { capitalize(pokemon.name) }
       <AnimatePresence>
-      <motion.div
-      initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity: 1, y: 0, transition: {
-        staggerChildren: 2
-      } }}
-      exit={{ opacity: 0 }}
-      
-      >
+
         <motion.img
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0, transition: {
+                staggerChildren: 2
+              } }}
+              exit={{ opacity: 0 }}
+              
           className="w-32 h-32"
           src={pokemon.sprites?.front_default}
           alt={pokemon.name}
         />
-        <p>{pokemon.abilities[0].ability.name}</p>
-      </motion.div>
+        <p
+        className="font-bold"
+        >{capitalize(pokemon.types.map((typeObj) => typeObj.type.name).join(" "))}</p>
       </AnimatePresence>
     </div>
- 
+    </Link>
   );
 };
 
