@@ -29,7 +29,6 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
         <p className="font-bold">
           <span
             className="capitalize"
-            key={pokemon.id}
             style={{
               color: `#${pokemonTypeColors[pokemon.types[0].type.name]}`,
               border: `solid 2px #${
@@ -49,7 +48,6 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
             ? pokemon.types[1] && (
                 <span
                   className="capitalize"
-                  key={pokemon.id}
                   style={{
                     color: `#${pokemonTypeColors[pokemon.types[0].type.name]}`,
                     border: `solid 2px #${

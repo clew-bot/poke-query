@@ -45,7 +45,7 @@ function App() {
           individualPokemon &&
           individualPokemon.map((pokemon) =>
             pokemon.data ? (
-              <div key={pokemon.data.id}>
+              <div key={pokemon.data.name}>
                 <PokeCard pokemon={pokemon.data} />
               </div>
             ) : null
