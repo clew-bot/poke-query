@@ -78,13 +78,13 @@ export interface SinglePokemonDTO {
         };
       }
     ];
-    types: [{
+    types: {
       slot: number;
       type: {
           name: string;
           url: string;
       }
-    }];
+    }[];
     weight: number;
   }
   
