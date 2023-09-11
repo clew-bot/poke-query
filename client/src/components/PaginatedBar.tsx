@@ -7,7 +7,7 @@ interface PaginatedBarProps {
 const PaginatedBar = ({ handlePaginate, page, setPage }: PaginatedBarProps) => {
   return (
     <div>
-      <button onClick={() => handlePaginate(Math.max(0, page - 1))}>Previous</button>
+      <button onClick={() => handlePaginate(Math.max(1, page - 1))}>Previous</button>
       <button
       onClick={() => handlePaginate(page + 1)}
       >Next</button>
