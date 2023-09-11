@@ -9,46 +9,46 @@ import PaginatedBar from "./components/PaginatedBar";
 
 function App() {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isError, error, isSuccess, isFetching, individualPokemon } =
-    useGetAllPokemon(page);
-    console.log(isLoading);
+  const { individualPokemon } = useGetAllPokemon(page);
+
+  const isLoading = individualPokemon?.some((pokemon) => pokemon.isLoading);
+  const isFetching = individualPokemon?.some((pokemon) => pokemon.isFetching);
+  console.log(individualPokemon);
 
   if (!individualPokemon) return <div>No data</div>;
 
   const handlePaginate = (page: number): number => {
     setPage(page);
     return page;
-  }
+  };
 
   return (
     <Container>
       <h1 className="text-slate-900 text-6xl font-bold">
         The List of the Original 150 Pokemon.
       </h1>
-      <div
-        className="flex flex-wrap justify-center md:justify-left items-center gap-2"
-      >
+      <div className="flex flex-wrap justify-center md:justify-left items-center gap-2">
         {isLoading ? (
           <>
-          <div>We're Loading Hold Up Kid!!!!!</div>
+            <div>We're Loading Hold Up Kid!!!!!</div>
           </>
-        ) : individualPokemon &&
+        ) : (
+          individualPokemon &&
           individualPokemon.map((pokemon) =>
             pokemon.data ? (
               <div key={pokemon.data.id}>
                 <PokeCard pokemon={pokemon.data} />
               </div>
             ) : null
-          )}
-      {
-        isFetching && <div>Loading...</div>
-      }
-       
+          )
+        )}
+        {isFetching && <div>Loading...</div>}
       </div>
-      <PaginatedBar 
-          page={page}
-          setPage={setPage}
-          handlePaginate={handlePaginate}/>
+      <PaginatedBar
+        page={page}
+        setPage={setPage}
+        handlePaginate={handlePaginate}
+      />
     </Container>
   );
 }

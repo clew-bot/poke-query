@@ -20,7 +20,7 @@ const getSinglePokemon = async (url: string) => {
 
 export const useGetAllPokemon = (page: number) => {
   const offset = (page - 1) * 20;
-  const { isLoading, isError, data, error, isSuccess, isFetching } = useQuery<
+  const { data } = useQuery<
     PokemonResponse,
     Error
   >({
@@ -28,7 +28,6 @@ export const useGetAllPokemon = (page: number) => {
     queryFn: () => getAllPokemon(offset),
     keepPreviousData: true,
   });
-  console.log("is Fetch: ", isFetching);
   const individualPokemon = useQueries({
     queries:
       data?.results.map((pokemon) => ({
@@ -40,12 +39,6 @@ export const useGetAllPokemon = (page: number) => {
   console.log(individualPokemon);
 
   return {
-    isLoading,
-    isError,
-    data,
-    error,
-    isSuccess,
     individualPokemon,
-    isFetching,
   };
 };
