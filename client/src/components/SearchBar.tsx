@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import pokemonList from "../assets/json/pokemonList.json";
 
-interface Pokemon {
-  name: string;
-}
-
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<any>("");
   const [filteredPokemon, setFilteredPokemon] = useState<any>([]);

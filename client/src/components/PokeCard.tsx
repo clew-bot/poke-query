@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { SinglePokemonDTO } from "../types/SinglePokemonResponse";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { pokemonTypeColors } from "../types/pokemonTypeColors";
 interface PokeCardProps {
   pokemon: SinglePokemonDTO;
