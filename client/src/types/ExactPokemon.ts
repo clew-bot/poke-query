@@ -12,6 +12,26 @@ interface language {
   names: name[];
 }
 
+interface FlavorText {
+  flavor_text: string;
+  language: language;
+  version: Version;
+}
+
+interface Version {
+  id: number;
+  name: string;
+  names: name[];
+  version_group: VersionGroup;
+}
+
+interface VersionGroup {
+  id: number;
+  name: string;
+  order: number;
+}
+
+
 export interface ExactPokemon {
   id: number;
   name: string;
@@ -42,6 +62,7 @@ export interface ExactPokemon {
       url: string;
     }[];
   };
+   flavor_text_entries: FlavorText[];
 }
 
 export interface AbilityPokemon {
