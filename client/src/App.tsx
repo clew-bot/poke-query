@@ -6,6 +6,7 @@ import Container from "./components/Container";
 import PaginatedBar from "./components/PaginatedBar";
 import SearchBar from "./components/SearchBar";
 import { useSearchParams } from "react-router-dom";
+import Footer from "./components/Footer";
 
 // Moved outside of the component to avoid re-definition
 
@@ -33,6 +34,7 @@ function App() {
   };
 
   return (
+    <>
     <Container>
       <h1 className="text-slate-100 text-6xl font-bold text-center m-7">
         Browse Pokemon.
@@ -64,6 +66,8 @@ function App() {
         {isFetching && <div>Loading...</div>}
       </div>
     </Container>
+    <Footer />
+    </>
   );
 }
 

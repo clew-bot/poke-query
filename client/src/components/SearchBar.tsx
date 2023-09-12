@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import pokemonList from "../assets/json/pokemonList.json";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<any>("");
   const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(searchTerm);
@@ -29,7 +32,11 @@ const SearchBar = () => {
           {filteredPokemon.map((pokemon: string, index: number) => (
             <div key={index}>
               <div className=" w-full h-full absolute top-0 -z-10 bg-black opacity-50 rounded-md"></div>
-              <div className="z-50">{pokemon}</div>
+              <motion.div
+              whileHover={{ scale: 1.1, textDecoration: "underline", padding: "2px" }}
+              className="z-50 cursor-pointer"
+              onClick={() => navigate(`/pokemon/${pokemon}`)}
+              >{pokemon}</motion.div>
             </div>
           ))}
         </div>
