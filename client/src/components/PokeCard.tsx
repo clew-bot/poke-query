@@ -9,7 +9,7 @@ interface PokeCardProps {
 const PokeCard = ({ pokemon }: PokeCardProps) => {
   if (!pokemon.name) return null;
   return (
-    <Link to={`/pokemon/${pokemon.name}`}>
+    <Link to={`/pokemon/${pokemon.id}`}>
       <div className="border-2 p-2 rounded border-black bg-slate-100 hover:bg-slate-200 transition duration-300 ease-in-out flex flex-col justify-center items-center cursor-pointer w-44 ">
         <h2 
         title={pokemon.name}
