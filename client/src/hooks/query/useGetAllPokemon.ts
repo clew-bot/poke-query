@@ -2,7 +2,7 @@ import { useQuery, useQueries } from "@tanstack/react-query";
 import { SinglePokemonDTO } from "../../types/SinglePokemonResponse";
 import axios from "axios";
 import { PokemonResponse } from "../../types/GeneralResponse";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 
 // const [searchParams, setSearchParams] = useSearchParams();
 
