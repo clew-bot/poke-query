@@ -12,7 +12,7 @@ interface language {
   names: name[];
 }
 
-interface FlavorText {
+export interface FlavorText {
   flavor_text: string;
   language: language;
   version: Version;
@@ -65,6 +65,12 @@ export interface ExactPokemon {
    flavor_text_entries: FlavorText[];
 }
 
+export interface VerboseEffect {
+  effect: string;
+  short_effect: string;
+  language: language;
+}
+
 export interface AbilityPokemon {
   id: number;
   name: string;
@@ -105,20 +111,13 @@ export interface AbilityPokemon {
     name: string;
     language: language;
   }[];
-  effect_entries: {
-    effect: string;
-    short_effect: string;
-    language: language;
-  }[];
+  effect_entries: VerboseEffect[];
   effect_changes: {
     version_group: {
       name: string;
       url: string;
     };
-    effect_entries: {
-      effect: string;
-      language: language;
-    }[];
+    effect_entries: VerboseEffect[];
   }[];
   flavor_text_entries: {
     flavor_text: string;

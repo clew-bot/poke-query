@@ -35,7 +35,7 @@ const SearchBar = () => {
               <motion.div
               whileHover={{ scale: 1.1, textDecoration: "underline", padding: "2px" }}
               className="z-50 cursor-pointer"
-              onClick={() => navigate(`/pokemon/${pokemon}`)}
+              onClick={() => navigate(`/pokemon/${pokemon.toLowerCase()}`)}
               >{pokemon}</motion.div>
             </div>
           ))}

@@ -41,6 +41,5 @@ export const useMoreInformation = (id: string) => {
         queryKey: ["getDetailsPokemon", id],
         queryFn: () => getDetailsPokemon(id),
   });
-
   return { queries, abilityQueries, data };
 };
