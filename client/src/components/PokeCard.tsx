@@ -10,7 +10,7 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
   if (!pokemon.name) return null;
   return (
     <Link to={`/pokemon/${pokemon.name}`}>
-      <div className="border-2 p-2 rounded border-black bg-slate-100 hover:bg-slate-200 transition duration-300 ease-in-out flex flex-col justify-center items-center cursor-pointer w-44">
+      <div className="border-2 p-2 rounded border-black bg-slate-100 hover:bg-slate-200 transition duration-300 ease-in-out flex flex-col justify-center items-center cursor-pointer w-44 ">
         <h2 
         title={pokemon.name}
         className="font-bold capitalize text-xl text-ellipsis w-32 whitespace-nowrap overflow-hidden text-center">{pokemon.name}</h2>
@@ -51,9 +51,9 @@ const PokeCard = ({ pokemon }: PokeCardProps) => {
                 <span
                   className="capitalize"
                   style={{
-                    color: `#${pokemonTypeColors[pokemon.types[0].type.name]}`,
+                    color: `#${pokemonTypeColors[pokemon.types[1].type.name]}`,
                     border: `solid 2px #${
-                      pokemonTypeColors[pokemon.types[0].type.name]
+                      pokemonTypeColors[pokemon.types[1].type.name]
                     }`,
                     borderRadius: "5px",
                     padding: "2px",

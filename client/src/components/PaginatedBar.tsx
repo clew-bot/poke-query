@@ -7,7 +7,7 @@ interface PaginatedBarProps {
 const PaginatedBar = ({ handlePaginate, page, setPage }: PaginatedBarProps) => {
   return (
     <div
-    className="border-2 text-center w-fit mx-auto p-2 bg-slate-200 rounded-lg m-2"
+    className="border-2 text-center w-fit p-2 bg-slate-200 rounded-lg m-2"
     >
       <button
       disabled={page === 1}

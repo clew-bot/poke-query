@@ -4,6 +4,7 @@ import { useGetAllPokemon } from "./hooks/query/useGetAllPokemon";
 import PokeCard from "./components/PokeCard";
 import Container from "./components/Container";
 import PaginatedBar from "./components/PaginatedBar";
+import SearchBar from "./components/SearchBar";
 import { useSearchParams } from "react-router-dom";
 
 // Moved outside of the component to avoid re-definition
@@ -36,11 +37,14 @@ function App() {
       <h1 className="text-slate-100 text-6xl font-bold text-center m-7">
         Browse Pokemon.
       </h1>
-      <PaginatedBar
-        page={page}
-        setPage={setPage}
-        handlePaginate={handlePaginate}
-      />
+      <div className="flex justify-center items-center">
+        <SearchBar />
+        <PaginatedBar
+          page={page}
+          setPage={setPage}
+          handlePaginate={handlePaginate}
+        />
+      </div>
 
       <div className="flex flex-wrap items-start gap-2 justify-center">
         {isLoading ? (
