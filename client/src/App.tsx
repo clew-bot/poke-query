@@ -33,10 +33,16 @@ function App() {
 
   return (
     <Container>
-      <h1 className="text-slate-900 text-6xl font-bold">
-        The List of the Original 150 Pokemon.
+      <h1 className="text-slate-100 text-6xl font-bold text-center m-7">
+        Browse Pokemon.
       </h1>
-      <div className="flex flex-wrap justify-center md:justify-left items-center gap-2">
+      <PaginatedBar
+        page={page}
+        setPage={setPage}
+        handlePaginate={handlePaginate}
+      />
+
+      <div className="flex flex-wrap items-start gap-2 justify-center">
         {isLoading ? (
           <>
             <div>We're Loading Hold Up Kid!!!!!</div>
@@ -53,11 +59,6 @@ function App() {
         )}
         {isFetching && <div>Loading...</div>}
       </div>
-      <PaginatedBar
-        page={page}
-        setPage={setPage}
-        handlePaginate={handlePaginate}
-      />
     </Container>
   );
 }
