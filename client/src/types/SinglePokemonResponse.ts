@@ -67,6 +67,16 @@ export interface SinglePokemonDTO {
       front_female: string | null;
       front_shiny: string | null;
       front_shiny_female: string | null;
+      other: {
+        dream_world: {
+          front_default: string;
+          front_female: string | null;
+        };
+        "official-artwork": {
+          front_default: string;
+          front_shiny?: string;
+        };
+      };
     };
     stats: 
       {
@@ -86,5 +96,7 @@ export interface SinglePokemonDTO {
       }
     }[];
     weight: number;
+   
+    versions: any; // TODO: add type
   }
   

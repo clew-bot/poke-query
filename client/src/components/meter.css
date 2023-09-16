@@ -1,0 +1,42 @@
+meter {
+    /* Default styling */
+    width: 100%;
+    height: 25px;
+    
+  }
+  
+  /* Chrome, Safari, new versions of Opera */
+  ::-webkit-meter-bar {
+    background: rgb(244, 244, 244);
+    border-radius: 0px !important;
+  }
+  
+  ::-webkit-meter-optimum-value {
+    background: green !important;
+  }
+  
+  ::-webkit-meter-suboptimum-value {
+    background: rgb(109, 183, 196) !important;
+  }
+  
+  ::-webkit-meter-even-less-good-value {
+    background: rgb(217, 61, 66) !important;
+  }
+  
+  /* Firefox */
+  ::-moz-meter-bar {
+    background: grey;
+  }
+  
+  ::-moz-meter-optimum {
+    background: green;
+  }
+  
+  ::-moz-meter-sub-optimum {
+    background: yellow;
+  }
+  
+  ::-moz-meter-sub-sub-optimum {
+    background: red;
+  }
+  

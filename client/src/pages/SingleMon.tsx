@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PokemonImages from "../components/PokemonImages";
 import PokemonVersions from "../components/PokemonVersions";
 import PokemonAbilityCard from "../components/PokemonAbility";
+import PokemonMisc from "../components/PokemonMisc";
 const SingleMon = () => {
   const location = useLocation();
   // Get the id from the url
@@ -28,36 +29,19 @@ const SingleMon = () => {
   });
   return (
     <Container>
-      <Link to="/" className="pt-10">
-        🏠
+      <div className="mt-2 transition-all text-slate-100 hover:underline hover:underline-offset-8 ">
+      <Link to="/" className="pt-10 text-3xl">
+        Home
       </Link>
-      <h1 className="text-4xl font-bold capitalize text-white py-10">
+      </div>
+ 
+      <h1 className="text-7xl underline underline-offset-4 decoration-slate-200 text-slate-50 text-center font-bold capitalize py-10">
         {queries.data?.name}
       </h1>
       <PokemonImages data={data} />
-      <div className="p-5  flex rounded-lg relative z-50 flex-col">
-        <p className="text-center font-bold text-lg">Regular</p>
-        <div className="bg-neutral-300 h-full w-full absolute top-0 right-0 opacity-80 -z-10 rounded-xl blur-xs shadow-lg"></div>
-        <div className="fle capitalize">
-          <p>
-            Base Happiness: <span>{queries.data?.base_happiness}</span>{" "}
-          </p>
-          <p>
-            Primary Color: <span>{queries.data?.color.name}</span>{" "}
-          </p>
-          <p>
-            Number: <span>{queries.data?.id}</span>{" "}
-          </p>
-          <p>
-            Habitat: <span>{queries.data?.habitat.name}</span>{" "}
-          </p>
-          <p>
-            Legendary:{" "}
-            <span>{!queries.data?.is_legendary ? "False" : "True"}</span>{" "}
-          </p>
-        </div>
-      </div>
+
       <PokemonAbilityCard filteredAbilityText={filteredAbilityText} />
+      <PokemonMisc queries={queries} />
       <PokemonVersions filteredFlavorText={filteredFlavorText} />
     </Container>
   );
