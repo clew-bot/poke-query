@@ -7,7 +7,7 @@ import SingleMon from "./pages/SingleMon.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
+import NotFound from "./pages/NotFound.tsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/pokemon/:id",
     element: <SingleMon />,
+  },
+  {
+    path: "/error",
+    element: <NotFound />,
   },
 ]);
 

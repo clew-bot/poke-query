@@ -1,5 +1,5 @@
 import Container from "../components/Container";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useMoreInformation } from "../hooks/query/useGetExactPokemon";
 import { Link } from "react-router-dom";
 import PokemonImages from "../components/PokemonImages";
@@ -10,9 +10,11 @@ const SingleMon = () => {
   const location = useLocation();
   // Get the id from the url
   const id = location.pathname.split("/")[2];
-  const { abilityQueries, queries, data } = useMoreInformation(id);
-  console.log(queries);
-
+  const { abilityQueries, queries, data, isError } = useMoreInformation(id);
+  const navigate = useNavigate();
+  if(isError === true) {
+   return navigate("/error");
+  }
   const filteredFlavorText = queries.data?.flavor_text_entries.filter(
     (entry) => entry.language.name === "en"
   );
@@ -30,11 +32,11 @@ const SingleMon = () => {
   return (
     <Container>
       <div className="mt-2 transition-all text-slate-100 hover:underline hover:underline-offset-8 ">
-      <Link to="/" className="pt-10 text-3xl">
-        Home
-      </Link>
+        <Link to="/" className="pt-10 text-3xl">
+          Home
+        </Link>
       </div>
- 
+
       <h1 className="text-7xl underline underline-offset-4 decoration-slate-200 text-slate-50 text-center font-bold capitalize py-10">
         {queries.data?.name}
       </h1>
