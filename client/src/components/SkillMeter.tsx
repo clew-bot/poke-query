@@ -1,7 +1,10 @@
+import { Chart, AxisOptions } from "react-charts"
 interface SkillMeterProps {
     stat: number
     name: string
 }
+
+
 
 const SkillMeter = ({ stat, name } :SkillMeterProps) => {
   return (
