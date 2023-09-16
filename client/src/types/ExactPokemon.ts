@@ -39,6 +39,14 @@ export interface ExactPokemon {
   gender_rate: number;
   capture_rate: number;
   base_happiness: number;
+  color: {
+    name: string;
+    url: string;
+  };
+  habitat: {
+    name: string;
+    url: string;
+  };
   is_baby: boolean;
   is_legendary: boolean;
   is_mythical: boolean;

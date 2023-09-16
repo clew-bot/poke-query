@@ -68,7 +68,7 @@ export interface SinglePokemonDTO {
       front_shiny: string | null;
       front_shiny_female: string | null;
     };
-    stats: [
+    stats: 
       {
         base_stat: number;
         effort: number;
@@ -76,8 +76,8 @@ export interface SinglePokemonDTO {
           name: string;
           url: string;
         };
-      }
-    ];
+      }[]
+    ;
     types: {
       slot: number;
       type: {
