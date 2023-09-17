@@ -41,7 +41,7 @@ function App() {
     <Container>
       <Link to="/">
       <h1 className="text-slate-100 text-6xl font-bold text-center m-7">
-        Browse Pokemon.
+        Browse Pokemon..
       </h1>
       </Link>
      
