@@ -7,23 +7,24 @@ import PaginatedBar from "./components/PaginatedBar";
 import SearchBar from "./components/SearchBar";
 import { useSearchParams } from "react-router-dom";
 import Footer from "./components/Footer";
+import RegionDropDown from "./components/RegionDropDown";
+import { Link } from "react-router-dom";
+import { Player } from "@lottiefiles/react-lottie-player";
+import loading from "./assets/lottie/loading.json"
 
-// Moved outside of the component to avoid re-definition
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
   const { individualPokemon } = useGetAllPokemon(page);
 
-  //Grab the page from the URL
   useEffect(() => {
     const page = searchParams.get("page");
     setPage(Number(page) || 1);
   }, [searchParams]);
 
   const isLoading = individualPokemon?.some((pokemon) => pokemon.isLoading);
-  const isFetching = individualPokemon?.some((pokemon) => pokemon.isFetching);
-  // console.log(individualPokemon);
+
 
   if (!individualPokemon) return <div>No data</div>;
 
@@ -33,12 +34,17 @@ function App() {
     return page;
   };
 
+
+
   return (
     <>
     <Container>
+      <Link to="/">
       <h1 className="text-slate-100 text-6xl font-bold text-center m-7">
         Browse Pokemon.
       </h1>
+      </Link>
+     
       <div className="flex justify-center items-center">
         <SearchBar />
         <PaginatedBar
@@ -46,12 +52,19 @@ function App() {
           setPage={setPage}
           handlePaginate={handlePaginate}
         />
+        <RegionDropDown setPage={setPage} setSearchParams={setSearchParams}/>
       </div>
 
       <div className="flex flex-wrap items-start gap-2 justify-center">
         {isLoading ? (
           <>
-            <div>We're Loading Hold Up Kid!!!!!</div>
+            <div className="h-screen">
+              <Player
+              autoplay
+              src={loading}
+              style={{ height: '50px', width: '50px' }}
+              />
+            </div>
           </>
         ) : (
           individualPokemon &&
@@ -63,7 +76,6 @@ function App() {
             ) : null
           )
         )}
-        {isFetching && <div>Loading...</div>}
       </div>
     </Container>
     <Footer />

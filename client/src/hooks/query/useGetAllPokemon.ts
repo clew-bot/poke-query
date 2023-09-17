@@ -2,10 +2,6 @@ import { useQuery, useQueries } from "@tanstack/react-query";
 import { SinglePokemonDTO } from "../../types/SinglePokemonResponse";
 import axios from "axios";
 import { PokemonResponse } from "../../types/GeneralResponse";
-// import { useSearchParams } from "react-router-dom";
-
-// const [searchParams, setSearchParams] = useSearchParams();
-
 const getAllPokemon = async (offset: any): Promise<PokemonResponse> => {
   const { data } = await axios.get<PokemonResponse>(
     `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`

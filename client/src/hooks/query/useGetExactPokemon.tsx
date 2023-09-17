@@ -1,9 +1,7 @@
 import { useQueries, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { ExactPokemon, AbilityPokemon } from "../../types/ExactPokemon";
-import { useEffect } from "react";
 import { SinglePokemonDTO } from "../../types/SinglePokemonResponse";
-import { useNavigate } from "react-router-dom";
 const getDetailsPokemon = async (id: string): Promise<ExactPokemon> => {
   try {
     const { data } = await axios.get<ExactPokemon>(
@@ -34,9 +32,6 @@ const getSinglePokemon = async (name: string) => {
 };
 
 export const useMoreInformation = (id: string) => {
-
- 
-  const navigate = useNavigate();
   const { data, isError } = useQuery<SinglePokemonDTO>({
     queryKey: ["getSinglePokemon", id],
     queryFn: () => getSinglePokemon(id),
@@ -58,5 +53,4 @@ export const useMoreInformation = (id: string) => {
     retry: false,
   });
   return { queries, abilityQueries, data, isError };
-
 };
