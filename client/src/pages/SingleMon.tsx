@@ -6,15 +6,23 @@ import PokemonImages from "../components/PokemonImages";
 import PokemonVersions from "../components/PokemonVersions";
 import PokemonAbilityCard from "../components/PokemonAbility";
 import PokemonMisc from "../components/PokemonMisc";
+import { useEffect } from "react";
+
+
 const SingleMon = () => {
+
   const location = useLocation();
-  // Get the id from the url
   const id = location.pathname.split("/")[2];
   const { abilityQueries, queries, data, isError } = useMoreInformation(id);
   const navigate = useNavigate();
-  if(isError === true) {
-   return navigate("/error");
+
+  useEffect(() => {
+    if (isError === true) {
+      return navigate("/error");
+    }
   }
+  , [isError, navigate]);
+
   const filteredFlavorText = queries.data?.flavor_text_entries.filter(
     (entry) => entry.language.name === "en"
   );
@@ -40,8 +48,8 @@ const SingleMon = () => {
       <h1 className="text-7xl underline underline-offset-4 decoration-slate-200 text-slate-50 text-center font-bold capitalize py-10">
         {queries.data?.name}
       </h1>
+      
       <PokemonImages data={data} />
-
       <PokemonAbilityCard filteredAbilityText={filteredAbilityText} />
       <PokemonMisc queries={queries} />
       <PokemonVersions filteredFlavorText={filteredFlavorText} />
